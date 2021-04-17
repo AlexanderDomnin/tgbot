@@ -8,18 +8,20 @@ from telebot import types
 # Ответ на старт
 @bot.message_handler(commands=['start'])
 def start_message(message):
-    bot.send_message(message.from_user.id,'Привет! Бот покажет тебе полезныe ссылках для начинающего тестировщика!\n'+
+    bot.send_message(message.from_user.id, 'Привет! Бот покажет тебе полезныe ссылках для начинающего тестировщика!\n' +
                                           '/receive - для выбора раздела с ссылками\n /help - Для справки \n /start - Снова прочесть сообщение')
 # Ответ на хелп
 @bot.message_handler(commands=['help'])
 def help_command(message):
     keyboard = types.InlineKeyboardMarkup()
-    key_help = types.InlineKeyboardButton('Написать разработчику',url='https://vk.com/id21929322')
+    key_help = types.InlineKeyboardButton('Написать разработчику', url='https://vk.com/id21929322')
     keyboard.add(key_help)
-    bot.send_message(message.chat.id,'В боте собраны все полезные ссылки для начинающего тестировшика\n'+
-                      '1. Ссылки на курсы платные и бесплатные\n'+
-                      '2. Ссылка на интересные статьи\n'+
-                      '3. Ссылки на полезные каналы в телеграмм\n',reply_markup=keyboard)
+    bot.send_message(message.chat.id, 'В боте собраны все полезные ссылки для начинающего тестировшика\n' +
+                      '1. Ссылки на курсы платные и бесплатные\n' +
+                      '2. Ссылка на интересные статьи\n' +
+                      '3. Ссылки на полезные каналы в телеграмм\n', reply_markup=keyboard)
+
+
 # Ответ на получить
 @bot.message_handler(commands=['receive'])
 def link_command(message):
@@ -38,7 +40,8 @@ def get_text_messages(message):
     else:
         bot.send_message(message.from_user.id,'Не понимаю тебя! Выбери раздел с полезными ссылками /receive или обратись к помощи /help')
 
-#работа с клавиатурой
+
+# работа с клавиатурой
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
     bot.answer_callback_query(callback_query_id=call.id, text='Спасибо за пользование ботом!')
@@ -108,4 +111,5 @@ def callback_worker(call):
         bot.send_message(call.message.chat.id, "Вы вернулись на главную страницу, выберите раздел снова", reply_markup=None)
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
-bot.polling(none_stop=True,interval=0)
+
+bot.polling(none_stop=True, interval=0)
