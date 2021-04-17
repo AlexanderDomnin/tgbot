@@ -79,6 +79,7 @@ def callback_worker(call):
         bot.send_message(call.message.chat.id, text, reply_markup=keyboard)
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
+
     elif call.data == 'tg':
         text = chats[0]
         keyboard = types.InlineKeyboardMarkup()
