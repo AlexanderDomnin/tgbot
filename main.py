@@ -34,15 +34,11 @@ def link_command(message):
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     if message.text == 'Привет':
-        #bot.send_message(message.from_user.id,"Привет! Бот покажет и расскажет тебе о полезных ссылках для начинающего тестирвощика!")
-        #keyboard = types.InlineKeyboardMarkup()
-        #key_education = types.InlineKeyboardButton(text='Обучение', callback_data='education')
-        #keyboard.add(key_education)
         bot.send_message(message.from_user.id, text='Выбери раздел с полезными ссылками /receive или обратись к помощи /help')
     else:
-        bot.send_message(message.from_user.id,'Не понимаю тебя! Выбери раздел /help - для помощи')
+        bot.send_message(message.from_user.id,'Не понимаю тебя! Выбери раздел с полезными ссылками /receive или обратись к помощи /help')
 
-
+#работа с клавиатурой
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
     bot.answer_callback_query(callback_query_id=call.id, text='Спасибо за пользование ботом!')
@@ -59,9 +55,6 @@ def callback_worker(call):
         keyboard.row(types.InlineKeyboardButton(text='Еще', callback_data='or'),
                              types.InlineKeyboardButton("Назад", callback_data='back'))
         bot.send_message(call.message.chat.id, text, reply_markup=keyboard)
-
-    elif call.data == 'back':
-        bot.send_message(call.message.chat.id, "Вы вернулись на главную страницу, выберите раздел снова", reply_markup=None)
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
     elif call.data == 'linksplus':
@@ -78,7 +71,6 @@ def callback_worker(call):
                  types.InlineKeyboardButton("Назад", callback_data='back'))
         bot.send_message(call.message.chat.id, text, reply_markup=keyboard)
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
-
 
     elif call.data == 'tg':
         text = chats[0]
@@ -110,6 +102,10 @@ def callback_worker(call):
         keyboard.row(types.InlineKeyboardButton(text='Еще', callback_data='orb'),
                  types.InlineKeyboardButton("Назад", callback_data='back'))
         bot.send_message(call.message.chat.id, text, reply_markup=keyboard)
+        bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
+
+    elif call.data == 'back':
+        bot.send_message(call.message.chat.id, "Вы вернулись на главную страницу, выберите раздел снова", reply_markup=None)
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
 bot.polling(none_stop=True,interval=0)
