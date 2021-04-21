@@ -1,6 +1,4 @@
-import telebot
 
-bot = telebot.TeleBot('1732108649:AAEBUgK0FmH5oSH-GeyA_RsYCiZtLey2fOw')
 
 first = ["Selenium WebDriver + Java для начинающих (платный) - https://www.udemy.com/selenium-webdriver-and-java-for-beginners/",
 "Software Testing - Udacity (бесплатный) - https://classroom.udacity.com/courses/cs258",
