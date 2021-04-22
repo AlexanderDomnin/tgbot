@@ -1,7 +1,9 @@
 
 import random
 import telebot
-bot = telebot.TeleBot('1732108649:AAEBUgK0FmH5oSH-GeyA_RsYCiZtLey2fOw')
+TOKEN = os.environ.get("qabot_token")
+'x-rapidapi-key': os.environ.get("qabot_api_key")
+#bot = telebot.TeleBot('1732108649:AAEBUgK0FmH5oSH-GeyA_RsYCiZtLey2fOw')
 from link import *
 from telebot import types
 
