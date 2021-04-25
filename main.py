@@ -1,12 +1,7 @@
 
 import random
-import telebot
-TOKEN = os.environ.get("qabot_token")
-'x-rapidapi-key': os.environ.get("qabot_api_key")
-#bot = telebot.TeleBot('1732108649:AAEBUgK0FmH5oSH-GeyA_RsYCiZtLey2fOw')
 from link import *
 from telebot import types
-
 
 # Ответ на старт
 @bot.message_handler(commands=['start'])
@@ -44,8 +39,6 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, text='Выбери раздел с полезными ссылками /receive или обратись к помощи /help')
     else:
         bot.send_message(message.from_user.id,'Не понимаю тебя! Выбери раздел с полезными ссылками /receive или обратись к помощи /help')
-
-
 # работа с клавиатурой
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):

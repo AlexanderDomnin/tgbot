@@ -1,5 +1,6 @@
 
-
+import telebot
+bot = telebot.TeleBot('ВАШ ТОКЕН')
 first = ["Selenium WebDriver + Java для начинающих (платный) - https://www.udemy.com/selenium-webdriver-and-java-for-beginners/",
 "Software Testing - Udacity (бесплатный) - https://classroom.udacity.com/courses/cs258",
 "QA Start - ITDVN (платный) - https://itvdn.com/ru/specialities/qa#",
