@@ -7,14 +7,14 @@ import telebot
 
 bot = telebot.TeleBot(tokens.token_bot)
 
-# Ответ на старт
+# Response to start
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.from_user.id, 'Привет! Бот покажет тебе полезныe ссылках для начинающего тестировщика!\n' +
                      '/receive - для выбора раздела с ссылками\n /help - Для справки \n /start - Снова прочесть сообщение')
 
 
-# Ответ на хелп
+# Response to help
 @bot.message_handler(commands=['help'])
 def help_command(message):
     keyboard = types.InlineKeyboardMarkup()
@@ -27,7 +27,7 @@ def help_command(message):
                      '3. Ссылки на полезные каналы в телеграмм\n', reply_markup=keyboard)
 
 
-# Ответ на получить
+# response to receive
 @bot.message_handler(commands=['receive'])
 def link_command(message):
     keyboard = types.InlineKeyboardMarkup()
@@ -40,7 +40,7 @@ def link_command(message):
     bot.send_message(message.chat.id, 'Выбери по какому разделу получить ссылки', reply_markup=keyboard)
 
 
-# Ответ на текст
+# Response to text
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     message.text.lower()
@@ -52,11 +52,12 @@ def get_text_messages(message):
                          'Не понимаю тебя! Выбери раздел с полезными ссылками /receive или обратись к помощи /help')
 
 
-# Ответ на фото, стикер, аудио, документы
+# Response to the photo, sticker, audio, document
 @bot.message_handler(content_types=['photo', 'sticker', 'audio', 'document'])
 def get_other_messages(message):
     bot.send_message(message.chat.id, 'Спасибо за старание, но бот знает только команды:(. Обратись к /help.')
-# работа с клавиатурой
+
+# Calling call functions
 @bot.callback_query_handler(func=lambda call: True)
 def callback_worker(call):
     bot.answer_callback_query(callback_query_id=call.id, text='Спасибо за пользование ботом!')
@@ -113,4 +114,4 @@ def callback_worker(call):
         bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id)
 
 
-bot.polling(none_stop=True, interval=0)
+bot.polling(none_stop=True, interval=0) #starting the survey
